@@ -1,0 +1,29 @@
+---
+title: "ACP with imputation matrix"
+author: "Melina Crettaz Minaglia"
+date: "July 11, 2019"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r pressure, echo=FALSE}
+#Library load
+library(FactoMineR) #For ACP
+require(missMDA) #For imputation matrix
+library(readxl) #For data loading
+
+#Data loading
+FQ <- read_excel("FQ.xls", sheet = "FQ")
+View(FQ)  #You can do the summary of total data o partial using summary()
+
+#ACP with imputation matrix
+FQcuanti <- FQ[,3:15] #select only cuantitative column of the table
+FQcuanti <- as.data.frame(FQcuanti) #convert to data.frame
+print(FQcuanti) #see 
+matrizimputacion<- estim_ncpPCA(FQcuanti, ncp.min=0, ncp.max = 5, method.cv = "Kfold") #create null data
+print(matrizimputacion) #see
+imputePCAarroyos <-imputePCA(FQcuanti, ncp = 2) #create imputation matrix
+PCAarroyos <- PCA(imputePCAarroyos$completeObs) #create ACP
+```
+
