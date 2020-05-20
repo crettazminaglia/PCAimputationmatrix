@@ -1,5 +1,5 @@
 # PCAimputationmatrix
-This is a repository that contains a simple principal component analysis (PCA) with an imputation matrix.
+This is a repository that contains a simple principal component analysis (PCA) with an imputation matrix using R.
 
 ## Before, some considerations:
 1- PCA needs quantitative data.
